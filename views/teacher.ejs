@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+
+  <body>
+
+    <table align=center>
+      <tr>
+        <th>ID</th>
+        <th>NAMA DEPAN</th>
+        <th>NAMA BEALAKANG</th>
+        <th>EMAIL</th>
+      </tr>
+      <% dataTcui.forEach( cont => { %>
+        <tr>
+          <td>
+            <%= cont.id %>
+          </td>
+          <td>
+            <%= cont.first_name %>
+          </td>
+          <td>
+            <%= cont.last_name %>
+          </td>
+          <td>
+            <%= cont.email %>
+          </td>
+
+        </tr>
+        <% }) %>
+    </table>
+
+  </body>
+
+</html>

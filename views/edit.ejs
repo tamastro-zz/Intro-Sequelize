@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <title>ADDRESSES</title>
+    <style>
+      table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      td,
+      th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+
+      tr:nth-child(even) {
+        background-color: #dddddd;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="title" align=center>
+
+      <h1>FORM</h1>
+      <form action="/student/edit/<%= dataTcui[0].id %>" method="post">
+        <input type="text" name="depan" value="<%= dataTcui[0].first_name %>"><br>
+        <input type="text" name="belakang" value="<%= dataTcui[0].last_name %>"><br>
+        <input type="text" name="email" value="<%= dataTcui[0].email %>"><br>
+        <input type="submit" value="Submit">
+      </form>
+      <br><br>
+      <a href="/student">BACK</a>
+    </div>
+  </body>
+
+</html>
+</div>
+</body>
+
+</html>
+</div>
+</body>
+
+</html>
