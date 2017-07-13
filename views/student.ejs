@@ -48,7 +48,7 @@
               <%= cont.email %>
             </td>
             <td><a href="/student/edit/<%= cont.id %>">EDIT</a></td>
-            <td><a href="/student/delete/<%= cont.id %>">DELETE</a></td>
+            <td><a href="/student/delete/<%= cont.id %>" onclick="return confirm('Are you sure?')">DELETE</a></td>
           </tr>
           <% }) %>
       </table>

@@ -38,13 +38,7 @@ router.post('/add', (req, res) => {
       res.redirect('/student')
     })
     .catch(() => {
-      db.Student.findAll()
-        .then(teach => {
-          res.render('add', {
-            dataTcui: teach,
-            err: err
-          })
-        })
+      res.redirect('/student/add')
     })
 })
 
