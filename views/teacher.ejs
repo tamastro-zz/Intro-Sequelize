@@ -12,8 +12,9 @@
       <tr>
         <th>ID</th>
         <th>NAMA DEPAN</th>
-        <th>NAMA BEALAKANG</th>
+        <th>NAMA BELAKANG</th>
         <th>EMAIL</th>
+        <th>SUBJECT</th>
       </tr>
       <% dataTcui.forEach( cont => { %>
         <tr>
@@ -29,10 +30,25 @@
           <td>
             <%= cont.email %>
           </td>
-
+          <%if (cont.SubjectId !== null) {%>
+            <td>
+              <%=cont.Subject.subject_name%>
+            </td>
+            <%} else {%>
+              <td>
+                unassigned
+              </td>
+              <%}%>
+                <td><a href="/teacher/edit/<%= cont.id %>">EDIT</a></td>
+                <td><a href="/teacher/delete/<%= cont.id %>" onclick="return confirm('Are you sure?')">DELETE</a></td>
         </tr>
         <% }) %>
     </table>
+
+    <br>
+    <button type="button" name="button"><a href="/teacher/add">ADD MEMBER</a></button>
+    <br><br><br>
+    <a href="/">BACK</a>
 
   </body>
 

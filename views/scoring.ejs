@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <title>Scoring</title>
+  </head>
+
+  <body align=center>
+    <form action="/subject/enroll/<%= dataTcui[0].SubjectId %>/scoring/<%= dataTcui[0].StudentId %>" method="post">
+      <input type="text" name="score" placeholder="Input Score"><br>
+      <input type="submit" value="Submit">
+    </form><br><br>
+    <a href="/subject/enroll/<%=dataTcui[0].SubjectId%>">BACK</a>
+  </body>
+
+</html>

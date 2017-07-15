@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <title>enroll</title>
+    <style>
+      table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 40%;
+      }
+
+      td,
+      th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+
+      tr:nth-child(even) {
+        background-color: #dddddd;
+      }
+    </style>
+  </head>
+  <h1><%= data[0].Subject.subject_name %></h1>
+
+  <body align=center>
+    <table align=center>
+      <tr>
+        <th>NAMA</th>
+        <th>SCORE</th>
+      </tr>
+      <% data.forEach( cont => { %>
+        <tr align='center'>
+          <td>
+            <%= cont.Student.first_name %>
+              <%= cont.Student.last_name %>
+          </td>
+          <td>
+            <% if (!cont.score) {%>
+              <a href="/subject/enroll/<%= cont.SubjectId %>/scoring/<%= cont.StudentId %>">Give Score</a>
+              <% } else {%>
+                <%= cont.score%>
+                  <% } %>
+          </td>
+        </tr>
+        <% }) %>
+    </table>
+    <a href="/subject">BACK</a>
+  </body>
+
+</html>

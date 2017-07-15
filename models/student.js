@@ -9,18 +9,15 @@ module.exports = function (sequelize, DataTypes) {
         isEmail: {
           msg: "tau nulis email ga ?"
         }
-        // unique: {
-        //   args: true,
-        //   msg: 'Email address already in use!'
-        // }
       }
-    }
-  }, {
-    classMethods: {
-      associate: function (models) {
-        // associations can be defined here
-      }
-    }
-  });
+    },
+    SubjectId: DataTypes.INTEGER
+  })
+  Student.associate = (models) => {
+    Student.belongsToMany(models.Subject, {
+      through: `Bridge`,
+      foreignKey: `StudentId`
+    })
+  };
   return Student;
 };

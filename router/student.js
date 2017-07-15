@@ -5,7 +5,10 @@ const db = require('../models');
 
 
 router.get('/', (req, res) => {
-  db.Student.findAll()
+  db.Student.findAll({
+
+      order: [['first_name', 'ASC']]
+    })
     .then(teach => {
       res.render('student', {
         dataTcui: teach
@@ -21,7 +24,8 @@ router.get('/add', (req, res) => {
   db.Student.findAll()
     .then(teach => {
       res.render('add', {
-        dataTcui: teach
+        dataTcui: teach,
+        err: ''
       })
     })
 })
@@ -37,8 +41,10 @@ router.post('/add', (req, res) => {
     .then(() => {
       res.redirect('/student')
     })
-    .catch(() => {
-      res.redirect('/student/add')
+    .catch((err) => {
+      res.render('/student/add', (erra => {
+        errs = err
+      }))
     })
 })
 
@@ -86,5 +92,41 @@ router.get('/delete/:id', (req, res) => {
     })
 })
 
+router.get('/addsubject/:id', (req, res) => {
+  db.Student.findAll({
+      include: [db.Subject],
+      where: {
+        id: req.params.id
+      }
+    })
+    .then(teach => {
+      db.Subject.findAll({
+          include: [db.Student]
+        })
+        .then(sub => {
+          console.log(teach);
+          res.render('SubStudent', {
+            dataTcui: teach,
+            subs: sub
+          })
+        })
+    })
+})
+
+router.post('/addsubject/:id', (req, res) => {
+  db.Bridge.create({
+      StudentId: req.params.id,
+      SubjectId: `${req.body.subId}`,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }, {
+      where: {
+        id: req.params.id
+      }
+    })
+    .then(() => {
+      res.redirect('/student')
+    })
+})
 
 module.exports = router

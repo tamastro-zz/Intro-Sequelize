@@ -27,19 +27,22 @@
   <body>
     <div class="title" align=center>
       <h1>FORM</h1>
-      <form action="/student/add" method="post">
+      <form action="/teacher/add" method="post">
         <input type="text" name="depan" placeholder="Insert Your First name"><br>
         <input type="text" name="belakang" placeholder="Insert Your Last name"><br>
         <input type="text" name="email" placeholder="Insert Your email"><br>
+        <select name="subId">
+          <% subs.forEach( sub => { %>
+        <option value="<%=sub.id%>">
+          <%=sub.subject_name%>
+        </option>
+        <% }) %>
+          </select>
         <input type="submit" value="Submit">
       </form>
 
-      <% if (err != '')  {%>
-        <span><%= errs %></span>
-        <% } %>
-
-          <br><br>
-          <a href="/student">BACK</a>
+      <br><br>
+      <a href="/teacher">BACK</a>
     </div>
   </body>
 

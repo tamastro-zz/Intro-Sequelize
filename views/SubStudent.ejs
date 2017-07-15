@@ -3,12 +3,12 @@
 
   <head>
     <meta charset="utf-8">
-    <title>GROUPS</title>
+    <title>ADDRESSES</title>
     <style>
       table {
         font-family: arial, sans-serif;
         border-collapse: collapse;
-        width: 100%;
+        width: 50%;
       }
 
       td,
@@ -26,37 +26,54 @@
 
   <body>
     <div class="title" align=center>
+
       <table align=center>
-        <tr>
-          <th>ID</th>
-          <th>NAMA DEPAN</th>
-          <th>NAMA BELAKANG</th>
-          <th>EMAIL</th>
-        </tr>
         <% dataTcui.forEach( cont => { %>
           <tr>
-            <td>
-              <%= cont.id %>
-            </td>
+            <td>First Name</td>
             <td>
               <%= cont.first_name %>
             </td>
+          </tr>
+          <tr>
+            <td>Last name</td>
             <td>
               <%= cont.last_name %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Email
             </td>
             <td>
               <%= cont.email %>
             </td>
-            <td><a href="/student/addsubject/<%= cont.id %>">Add Subject</a></td>
-            <td><a href="/student/delete/<%= cont.id %>" onclick="return confirm('Are you sure?')">DELETE</a> | <a href="/student/edit/<%= cont.id %>">EDIT</a></td>
           </tr>
           <% }) %>
       </table>
-      <br>
-      <button type="button" name="button"><a href="/student/add">ADD MEMBER</a></button>
-      <br><br><br>
-      <a href="/">BACK</a>
+
+      <h1>EDIT</h1>
+      <form action="/student/addsubject/<%= dataTcui[0].id %>" method="post">
+        <select name="subId">
+          <% subs.forEach( sub => { %>
+          <option value="<%=sub.id%>">
+            <%= sub.subject_name%>
+          </option>
+        <% }) %>
+          </select>
+        <input type="submit" value="Submit">
+      </form>
+      <br><br>
+      <a href="/student">BACK</a>
     </div>
   </body>
+
+</html>
+</div>
+</body>
+
+</html>
+</div>
+</body>
 
 </html>
