@@ -24,7 +24,8 @@ router.get('/add', (req, res) => {
           res.render('addT', {
             dataTcui: teach,
             subs: sub,
-            errs: ''
+            errs: '',
+            role: req.session.user.role
           })
         })
     })
@@ -61,10 +62,10 @@ router.get('/edit/:id', (req, res) => {
           include: [setup.Teacher]
         })
         .then(sub => {
-          console.log(teach);
           res.render('editT', {
             dataTcui: teach,
-            subs: sub
+            subs: sub,
+            role: req.session.user.role
           })
         })
     })

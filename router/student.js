@@ -6,12 +6,12 @@ const db = require('../models');
 
 router.get('/', (req, res) => {
   db.Student.findAll({
-
       order: [['first_name', 'ASC']]
     })
     .then(teach => {
       res.render('student', {
-        dataTcui: teach
+        dataTcui: teach,
+        role: req.session.user.role
       })
     })
 })
@@ -25,7 +25,8 @@ router.get('/add', (req, res) => {
     .then(teach => {
       res.render('add', {
         dataTcui: teach,
-        err: ''
+        err: '',
+        role: req.session.user.role
       })
     })
 })
@@ -56,7 +57,9 @@ router.get('/edit/:id', (req, res) => {
     })
     .then(teach => {
       res.render('edit', {
-        dataTcui: teach
+        dataTcui: teach,
+        role: req.session.user.role,
+        name: req.session.user.username
       })
     })
 })
@@ -107,7 +110,8 @@ router.get('/addsubject/:id', (req, res) => {
           console.log(teach);
           res.render('SubStudent', {
             dataTcui: teach,
-            subs: sub
+            subs: sub,
+            role: req.session.user.role
           })
         })
     })

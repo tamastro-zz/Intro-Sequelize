@@ -3,51 +3,42 @@
 
   <head>
     <meta charset="utf-8">
-    <title>enroll</title>
-    <style>
-      table {
-        font-family: arial, sans-serif;
-        border-collapse: collapse;
-        width: 40%;
-      }
-
-      td,
-      th {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-      }
-
-      tr:nth-child(even) {
-        background-color: #dddddd;
-      }
-    </style>
+    <title>ENROLL</title>
+    <%- include layout/bootstrap %>
   </head>
   <h1><%= data[0].Subject.subject_name %></h1>
 
   <body align=center>
-    <table align=center>
-      <tr>
-        <th>NAMA</th>
-        <th>SCORE</th>
-      </tr>
-      <% data.forEach( cont => { %>
-        <tr align='center'>
-          <td>
-            <%= cont.Student.first_name %>
-              <%= cont.Student.last_name %>
-          </td>
-          <td>
-            <% if (!cont.score) {%>
-              <a href="/subject/enroll/<%= cont.SubjectId %>/scoring/<%= cont.StudentId %>">Give Score</a>
-              <% } else {%>
-                <%= cont.score%>
-                  <% } %>
-          </td>
+    <%- include layout/header %>
+      <ol class="breadcrumb" align=left>
+        <li><a href="/homepage">Homepage</a></li>
+        <li><a href="/subject">Subject</a></li>
+        <li class="active">
+          <%= data[0].Subject.subject_name %>
+        </li>
+      </ol>
+      <table align=center class="table table-hover">
+        <tr>
+          <th>NAMA</th>
+          <th>SCORE</th>
         </tr>
-        <% }) %>
-    </table>
-    <a href="/subject">BACK</a>
+        <% data.forEach( cont => { %>
+          <tr align='center'>
+            <td>
+              <%= cont.Student.first_name %>
+                <%= cont.Student.last_name %>
+            </td>
+            <td>
+              <% if (!cont.score) {%>
+                <a href="/subject/enroll/<%= cont.SubjectId %>/scoring/<%= cont.StudentId %>">Give Score</a>
+                <% } else {%>
+                  <%= cont.scoreAlphabet %>
+                    <% } %>
+            </td>
+          </tr>
+          <% }) %>
+      </table>
+      <a href="/subject" class="btn btn-primary btn-lg active">BACK</a>
   </body>
 
 </html>

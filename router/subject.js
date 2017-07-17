@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const setup = require('../models');
+const score = require('../views/helper/scoring')
 
 
 
@@ -12,7 +13,8 @@ router.get('/', (req, res) => {
     })
     .then(teach => {
       res.render('subject', {
-        dataTcui: teach
+        dataTcui: teach,
+        role: req.session.user.role
       })
     })
 })
@@ -26,8 +28,13 @@ router.get('/enroll/:id', (req, res) => {
       include: [setup.Student, setup.Subject]
     })
     .then(final => {
+      final.forEach(alpha => {
+        alpha.scoreAlphabet = score(alpha.score)
+      })
       res.render('enrolled', {
-        data: final
+        data: final,
+        role: req.session.user.role,
+        name: req.session.user.username
       })
     })
 })
@@ -41,7 +48,8 @@ router.get('/enroll/:idsu/scoring/:idst', (req, res) => {
     })
     .then(teach => {
       res.render('scoring', {
-        dataTcui: teach
+        dataTcui: teach,
+        role: req.session.user.role
       })
     })
 })

@@ -3,44 +3,33 @@
 
   <head>
     <meta charset="utf-8">
-    <title>ADDRESSES</title>
-    <style>
-      table {
-        font-family: arial, sans-serif;
-        border-collapse: collapse;
-        width: 100%;
-      }
-
-      td,
-      th {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-      }
-
-      tr:nth-child(even) {
-        background-color: #dddddd;
-      }
-    </style>
+    <title>ADD STUDENT</title>
+    <%- include layout/bootstrap %>
   </head>
 
   <body>
-    <div class="title" align=center>
-      <h1>FORM</h1>
-      <form action="/student/add" method="post">
-        <input type="text" name="depan" placeholder="Insert Your First name"><br>
-        <input type="text" name="belakang" placeholder="Insert Your Last name"><br>
-        <input type="text" name="email" placeholder="Insert Your email"><br>
-        <input type="submit" value="Submit">
-      </form>
+    <%- include layout/header %>
+      <ol class="breadcrumb" align=left>
+        <li><a href="/homepage">Homepage</a></li>
+        <li><a href="/student">Student</a></li>
+        <li class="active">Add Student</li>
+      </ol>
+      <div class="title" align=center>
+        <h1>FORM</h1>
+        <form action="/student/add" method="post">
+          <input type="text" name="depan" placeholder="Insert Your First name"><br>
+          <input type="text" name="belakang" placeholder="Insert Your Last name"><br>
+          <input type="text" name="email" placeholder="Insert Your email"><br>
+          <input type="submit" value="Submit">
+        </form>
 
-      <% if (err != '')  {%>
-        <span><%= errs %></span>
-        <% } %>
+        <% if (err != '')  {%>
+          <span><%= errs %></span>
+          <% } %>
 
-          <br><br>
-          <a href="/student">BACK</a>
-    </div>
+            <br><br>
+            <a href="/student" class="btn btn-primary btn-lg active">BACK</a>
+      </div>
   </body>
 
 </html>

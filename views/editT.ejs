@@ -3,36 +3,25 @@
 
   <head>
     <meta charset="utf-8">
-    <title>ADDRESSES</title>
-    <style>
-      table {
-        font-family: arial, sans-serif;
-        border-collapse: collapse;
-        width: 100%;
-      }
-
-      td,
-      th {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-      }
-
-      tr:nth-child(even) {
-        background-color: #dddddd;
-      }
-    </style>
+    <title>EDIT TEACHER</title>
+    <%- include layout/bootstrap %>
   </head>
 
   <body>
-    <div class="title" align=center>
+    <%- include layout/header %>
+      <ol class="breadcrumb" align=left>
+        <li><a href="/homepage">Homepage</a></li>
+        <li><a href="/teacher">Teacher</a></li>
+        <li class="active">Edit Teacher</li>
+      </ol>
+      <div class="title" align=center>
 
-      <h1>EDIT</h1>
-      <form action="/teacher/edit/<%= dataTcui[0].id %>" method="post">
-        <input type="text" name="depan" value="<%= dataTcui[0].first_name %>"><br>
-        <input type="text" name="belakang" value="<%= dataTcui[0].last_name %>"><br>
-        <input type="text" name="email" value="<%= dataTcui[0].email %>"><br>
-        <select name="subId">
+        <h1>EDIT</h1>
+        <form action="/teacher/edit/<%= dataTcui[0].id %>" method="post">
+          <input type="text" name="depan" value="<%= dataTcui[0].first_name %>"><br>
+          <input type="text" name="belakang" value="<%= dataTcui[0].last_name %>"><br>
+          <input type="text" name="email" value="<%= dataTcui[0].email %>"><br>
+          <select name="subId">
           <option value=null>Unassigned</option>
           <% subs.forEach( sub => { %>
           <option value="<%=sub.id%>" <%= sub.id == dataTcui[0].SubjectId ? "SELECTED":'' %>>
@@ -40,11 +29,11 @@
           </option>
         <% }) %>
           </select>
-        <input type="submit" value="Submit">
-      </form>
-      <br><br>
-      <a href="/teacher">BACK</a>
-    </div>
+          <input type="submit" value="Submit">
+        </form>
+        <br><br>
+        <a href="/teacher" class="btn btn-primary btn-lg active">BACK</a>
+      </div>
   </body>
 
 </html>

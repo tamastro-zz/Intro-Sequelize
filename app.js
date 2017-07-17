@@ -1,6 +1,8 @@
 const express = require('express');
 const path = require('path');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
+const session = require('express-session');
+const valid = require('express-validator')
 
 //router
 var routeteacher = require('./router/teacher');
@@ -20,12 +22,69 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }))
+app.use(valid())
+app.use(session({
+  secret: 'sag',
+  resave: false,
+  saveUninitialized: true,
+  cookie: {}
+}))
 
-
-app.use('/teacher', routeteacher);
-app.use('/subject', routesubject);
-app.use('/student', routestudent);
 app.use('/', index)
+app.use((
+  req,
+  res,
+  next
+) => {
+  if (!req.session.user) {
+    res.sendStatus(403);
+  }
+  else {
+    next()
+  }
+})
+
+app.use((
+  req,
+  res,
+  next
+) => {
+  if (req.session.user.role == 'student' || 'teacher' || 'headmaster') {
+    next()
+  }
+  else {
+    res.sendStatus(403);
+  }
+})
+app.use('/student', routestudent);
+app.use((
+  req,
+  res,
+  next
+) => {
+  if (req.session.user.role == 'teacher' || 'headmaster') {
+    next()
+  }
+  else {
+    res.sendStatus(403);
+  }
+})
+app.use('/subject', routesubject);
+app.use((
+  req,
+  res,
+  next
+) => {
+  if (req.session.user.role == 'headmaster') {
+    next()
+  }
+  else {
+    res.sendStatus(403);
+  }
+})
+app.use('/teacher', routeteacher);
+
+
 
 
 
