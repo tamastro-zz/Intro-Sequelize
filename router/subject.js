@@ -14,7 +14,8 @@ router.get('/', (req, res) => {
     .then(teach => {
       res.render('subject', {
         dataTcui: teach,
-        role: req.session.user.role
+        role: req.session.user.role,
+        name: req.session.user.username
       })
     })
 })
@@ -49,7 +50,8 @@ router.get('/enroll/:idsu/scoring/:idst', (req, res) => {
     .then(teach => {
       res.render('scoring', {
         dataTcui: teach,
-        role: req.session.user.role
+        role: req.session.user.role,
+        name: req.session.user.username
       })
     })
 })

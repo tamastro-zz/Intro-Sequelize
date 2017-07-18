@@ -2,7 +2,9 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const session = require('express-session');
-const valid = require('express-validator')
+const valid = require('express-validator');
+const crypto = require('crypto');
+
 
 //router
 var routeteacher = require('./router/teacher');
@@ -30,19 +32,11 @@ app.use(session({
   cookie: {}
 }))
 
+
 app.use('/', index)
-app.use((
-  req,
-  res,
-  next
-) => {
-  if (!req.session.user) {
-    res.sendStatus(403);
-  }
-  else {
-    next()
-  }
-})
+
+
+
 
 app.use((
   req,

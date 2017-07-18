@@ -11,7 +11,9 @@ router.get('/', (req, res) => {
     })
     .then(teach => {
       res.render('teacher', {
-        dataTcui: teach
+        dataTcui: teach,
+        role: req.session.user.role,
+        name: req.session.user.username
       })
     })
 })
@@ -25,7 +27,8 @@ router.get('/add', (req, res) => {
             dataTcui: teach,
             subs: sub,
             errs: '',
-            role: req.session.user.role
+            role: req.session.user.role,
+            name: req.session.user.username
           })
         })
     })
@@ -65,7 +68,8 @@ router.get('/edit/:id', (req, res) => {
           res.render('editT', {
             dataTcui: teach,
             subs: sub,
-            role: req.session.user.role
+            role: req.session.user.role,
+            name: req.session.user.username
           })
         })
     })

@@ -38,7 +38,7 @@
 
         <h1>EDIT</h1>
         <form action="/student/addsubject/<%= dataTcui[0].id %>" method="post">
-          <select name="subId">
+          <select name="subId" class="form-control">
           <% subs.forEach( sub => { %>
           <option value="<%=sub.id%>">
             <%= sub.subject_name%>
