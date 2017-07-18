@@ -7,20 +7,7 @@
     "dialect": "postgres",
     "port": "5432"
   },
-  "test": {
-    "username": "tamastro",
-    "password": null,
-    "database": "tamastro",
-    "host": "localhost",
-    "dialect": "postgres",
-    "port": "5433"
-  },
   "production": {
-    "username": "tamastro",
-    "password": null,
-    "database": "tamastro",
-    "host": "localhost",
-    "dialect": "postgres",
-    "port": "5433"
+    "use_env_variable": "DATABASE_URL"
   }
 }
